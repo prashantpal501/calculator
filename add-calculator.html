@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {max-width: 500px; border: 1px solid #ccc; padding: 30px; box-sizing: border-box; margin: 50px auto 0;        }
+        .container h3{font-size: 24px; text-transform: uppercase; margin: 0 0 30px;}
+        .container input, select {padding: 8px 15px; width: 100%; box-sizing: border-box; margin-bottom: 3px;}
+        .container button{background: #035fff; color: #fff; padding: 6px 20px; font-size: 16px; border: none; cursor: pointer;}
+        #error1, #error2{color: #ff0000; display: none;}
+        .form-group{margin-bottom: 20px;}
+        #error1.red, #error2.red{display: block;}
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h3>Add Calculator</h3>
+        <div class="form-group">
+            <input type="text" id="num1" name="" placeholder="Number 1">
+            <span id="error1">Please enter a valid Number</span>
+        </div>
+        <div class="form-group">
+            <input type="text" id="num2" name="" placeholder="Number 2">
+            <span id="error2">Please enter a valid Number</span>
+        </div>
+        <div class="form-group">
+            <select id="operation">
+                <option>Select</option>
+                <option value="add">Addition (+)</option>
+                <option value="subtract">Subtraction (-)</option>
+                <option value="multiply">Multiplication (*)</option>
+                <option value="divide">Division (/)</option>
+            </select>
+        </div>
+        <br>
+        <button onclick="sum()" id="btn">Add </button>
+        <br>
+        <p id="result"></p>
+        <br>
+
+        
+
+       
+    </div>
+
+    <script>
+        function sum() {
+            var numbr1 = Number(document.getElementById('num1').value);
+            var numbr2 = Number(document.getElementById('num2').value);
+            var operation = document.getElementById('operation').value;
+            var result;
+            // var sum = numbr1 + numbr2;
+
+            if (isNaN(numbr1)) {
+                let addclass = document.getElementById("error1");
+                addclass.classList.add("red");
+                document.getElementById('num1').style.borderColor = 'red';
+            } else {
+                let addclass = document.getElementById("error1");
+                addclass.classList.remove("red");
+                document.getElementById('num1').style.borderColor = '';
+            }
+
+            if (isNaN(numbr2)) {
+                let addclass2 = document.getElementById("error2");
+                addclass2.classList.add("red");
+                document.getElementById('num2').style.borderColor = 'red';                
+            } else {
+                let addclass2 = document.getElementById("error2");
+                addclass2.classList.remove("red");
+                document.getElementById('num2').style.borderColor = '';
+            }
+
+            // if (isNaN(sum)) {
+            //     document.getElementById('result').innerHTML = "";
+            // } else {
+            //     document.getElementById('result').innerHTML = sum;
+            // }
+
+            switch (operation) {
+                case "add":
+                    result = numbr1 + numbr2;
+                    break;
+                case "subtract":
+                    result = numbr1 - numbr2;
+                    break;
+                case "multiply":
+                    result = numbr1 * numbr2;
+                    break;
+                case "divide":
+                    result = numbr1 / numbr2;
+                    break;
+            }
+            document.getElementById("result").innerText = result;
+        }
+    </script>
+</body>
+
+</html>
